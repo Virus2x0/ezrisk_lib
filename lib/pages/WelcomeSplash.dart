@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+import 'homePage.dart';
 
 getInstance() async {
   var prefs = await SharedPreferences.getInstance();
-  
+
   return prefs.getBool('isSeen');
 }
 
@@ -36,7 +38,7 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    check != true ? SecondScreen() : homeScreen())));
+                    check != true ? SecondScreen() : HomePage())));
   }
 
   @override
@@ -118,7 +120,10 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               )
             ],
-            onDone: () {},
+            onDone: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            },
             onSkip: () {},
             showSkipButton: true,
             skip: Text("Skip", style: TextStyle(fontSize: 18)),
@@ -137,17 +142,5 @@ class _SecondScreenState extends State<SecondScreen> {
         ),
       ),
     );
-  }
-}
-
-class homeScreen extends StatelessWidget {
-  const homeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      child: Text("it is our home"),
-    ));
   }
 }
