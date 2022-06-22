@@ -3,8 +3,14 @@ import 'package:ezrisk/pages/homePage.dart';
 import 'package:ezrisk/pages/logIn_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+var isSeen;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  isSeen = await (prefs.getBool('isSeen') ?? false);
+
   runApp(MyApp());
 }
 
@@ -21,7 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => WelcomeSplash(),
+          '/': (context) => WelcomeSplash(
+                isSeen: isSeen,
+              ),
           '/login': (context) => LogInPage(),
           '/home': (context) => HomePage(),
           // '/country': (context) => ChooseCountry()

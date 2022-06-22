@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi' as size;
+import 'package:ezrisk/pages/homePage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -26,9 +27,7 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
         () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) => isSeen 
-                    ? homeScreen()
-                    : SecondScreen())));
+                builder: (context) => isSeen ? HomePage() : SecondScreen())));
     print(isSeen);
   }
 
@@ -109,10 +108,13 @@ class _SecondScreenState extends State<SecondScreen> {
             onDone: () async {
               var prefs = await SharedPreferences.getInstance();
               await prefs.setBool('isSeen', true);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => homeScreen()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
-            onSkip: () {},
+            onSkip: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            },
             showSkipButton: true,
             skip: Text("Skip", style: TextStyle(fontSize: 18)),
             next: Text("Next", style: TextStyle(fontSize: 18)),
@@ -130,40 +132,5 @@ class _SecondScreenState extends State<SecondScreen> {
         ),
       ),
     );
-  }
-}
-
-class homeScreen extends StatefulWidget {
-  homeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<homeScreen> createState() => _homeScreenState();
-}
-
-class _homeScreenState extends State<homeScreen> {
-  var data;
-  Future Country() async {
-    var url = await Uri.parse(
-        "https://mocki.io/v1/48610350-9a3a-4416-96af-800ced98f9de");
-    var response = await http.get(url);
-    var countryData = response.body;
-    var data1 = jsonDecode(countryData);
-    var country = data1[0]['c_name'];
-    return country;
-  }
-
-  void initState() {
-    super.initState();
-    Country().then((value) {
-      data = value;
-      setState(() {});
-    });
-
-    print(data);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Container(child: Text('$data'))));
   }
 }
