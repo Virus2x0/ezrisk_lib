@@ -1,44 +1,35 @@
+import 'dart:convert';
 import 'dart:ffi' as size;
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get/get.dart';
-import 'homePage.dart';
-
-getInstance() async {
-  var prefs = await SharedPreferences.getInstance();
-
-  return prefs.getBool('isSeen');
-}
-
-void setInstance() async {
-  var prefs = await SharedPreferences.getInstance();
-  prefs.setBool('isSeen', true);
-}
 
 class WelcomeSplash extends StatefulWidget {
-  WelcomeSplash({Key? key}) : super(key: key);
+  final isSeen;
+  WelcomeSplash({this.isSeen});
 
   @override
-  State<WelcomeSplash> createState() => _WelcomeSplashState();
+  State<WelcomeSplash> createState() => _WelcomeSplashState(isSeen: isSeen);
 }
 
 class _WelcomeSplashState extends State<WelcomeSplash> {
+  final isSeen;
+  _WelcomeSplashState({this.isSeen});
+
   void initState() {
     super.initState();
-
-    var check = getInstance();
-    print(check);
 
     Timer(
         Duration(seconds: 3),
         () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    check != true ? SecondScreen() : HomePage())));
+                builder: (context) => isSeen 
+                    ? homeScreen()
+                    : SecondScreen())));
+    print(isSeen);
   }
 
   @override
@@ -76,11 +67,6 @@ class SecondScreen extends StatefulWidget {
 }
 
 class _SecondScreenState extends State<SecondScreen> {
-  void initState() {
-    super.initState();
-    setInstance();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,34 +81,36 @@ class _SecondScreenState extends State<SecondScreen> {
                     "Here you can write the description of the page, to explain someting...",
                 image: Center(
                   child: Image.network(
-                      "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
-                      height: 175.0),
+                    "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
+                  ),
                 ),
               ),
-              PageViewModel(
-                  title: "Title of first page",
-                  body:
-                      "Here you can write the description of the page, to explain someting...",
-                  image: Center(
-                    child: Image.network(
-                        "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
-                        height: 175.0),
-                  ),
-                  reverse: true),
               PageViewModel(
                 title: "Title of first page",
                 body:
                     "Here you can write the description of the page, to explain someting...",
                 image: Center(
                   child: Image.network(
-                      "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
-                      height: 175.0),
+                    "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
+                  ),
+                ),
+              ),
+              PageViewModel(
+                title: "Title of first page",
+                body:
+                    "Here you can write the description of the page, to explain someting...",
+                image: Center(
+                  child: Image.network(
+                    "https://thumbs.dreamstime.com/b/introduction-text-note-pad-office-desk-computer-technol-written-electronic-devices-paper-wood-table-above-concept-85304190.jpg",
+                  ),
                 ),
               )
             ],
-            onDone: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            onDone: () async {
+              var prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isSeen', true);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => homeScreen()));
             },
             onSkip: () {},
             showSkipButton: true,
@@ -142,5 +130,40 @@ class _SecondScreenState extends State<SecondScreen> {
         ),
       ),
     );
+  }
+}
+
+class homeScreen extends StatefulWidget {
+  homeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<homeScreen> createState() => _homeScreenState();
+}
+
+class _homeScreenState extends State<homeScreen> {
+  var data;
+  Future Country() async {
+    var url = await Uri.parse(
+        "https://mocki.io/v1/48610350-9a3a-4416-96af-800ced98f9de");
+    var response = await http.get(url);
+    var countryData = response.body;
+    var data1 = jsonDecode(countryData);
+    var country = data1[0]['c_name'];
+    return country;
+  }
+
+  void initState() {
+    super.initState();
+    Country().then((value) {
+      data = value;
+      setState(() {});
+    });
+
+    print(data);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: SafeArea(child: Container(child: Text('$data'))));
   }
 }
