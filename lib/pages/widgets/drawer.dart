@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
 import 'package:get/get.dart';
 
-import '../homePage.dart';
+import '../home_page.dart';
 
 class DrawerMenu extends StatefulWidget {
   DrawerMenu({Key? key}) : super(key: key);
@@ -77,7 +77,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           title: "Laws".text.xl.make(),
                           onTap: () {
                             // changeSelected(2);
-                            Get.to(() => InfoList());
+                            // Get.to(() => InfoList());
                           },
                         ),
                         ListTile(

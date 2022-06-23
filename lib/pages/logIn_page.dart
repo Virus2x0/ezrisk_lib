@@ -2,7 +2,7 @@ import 'package:ezrisk/pages/widgets/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'forgot_password_page.dart';
-import 'homePage.dart';
+import 'home_page.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);

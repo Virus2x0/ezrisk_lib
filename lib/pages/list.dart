@@ -1,15 +1,12 @@
+import 'package:ezrisk/models/contry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class InfoList extends StatefulWidget {
-  const InfoList({Key? key}) : super(key: key);
+class InfoList extends StatelessWidget {
+  final Item country;
+  const InfoList({Key? key, required this.country}) : super(key: key);
 
-  @override
-  State<InfoList> createState() => _InfoListState();
-}
-
-class _InfoListState extends State<InfoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +22,13 @@ class _InfoListState extends State<InfoList> {
               icon: Icon(Icons.search),
             ),
           ],
-          title: "Laws".text.make(),
+          title: "${country.c_name}".text.make(),
           centerTitle: true,
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
           child: Column(
-            children: [
-              // "List of auditees".text.bold.xl3.make(),
-              // ButtonNewStandard(),
-              StandardList()
-            ],
+            children: [Image.network(country.c_icon), StandardList()],
           ),
         ));
   }
@@ -53,8 +46,7 @@ class _InfoListState extends State<InfoList> {
                 shadowColor: Colors.blueAccent,
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  title: "Sample PDF".text.bold.xl2.make(),
-                  // subtitle: "ISO standard for ISMS".text.make(),
+                  title: "${country.c_name}".text.bold.xl2.make(),
                   trailing: ElevatedButton(
                     child: "  Open  ".text.make(),
                     onPressed: () {},
