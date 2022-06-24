@@ -1,11 +1,38 @@
+import 'dart:convert';
+
 import 'package:ezrisk/models/contry.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:ezrisk/models/app_config.dart';
+import 'package:http/http.dart' as http;
 
-class InfoList extends StatelessWidget {
+class InfoList extends StatefulWidget {
   final Item country;
+
   const InfoList({Key? key, required this.country}) : super(key: key);
+
+  @override
+  State<InfoList> createState() => _InfoListState();
+}
+
+class _InfoListState extends State<InfoList> {
+  late List _user = [];
+
+  void loadData() async {
+    String id = widget.country.c_id.toString();
+
+    var url = Uri.parse(JsonServer.url + id);
+    var response = await http.get(url);
+    var JsonDecode = jsonDecode(response.body);
+    _user = JsonDecode;
+    setState(() {});
+  }
+
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +49,13 @@ class InfoList extends StatelessWidget {
               icon: Icon(Icons.search),
             ),
           ],
-          title: "${country.c_name}".text.make(),
+          title: "${widget.country.c_name}".text.make(),
           centerTitle: true,
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
           child: Column(
-            children: [Image.network(country.c_icon), StandardList()],
+            children: [Image.network(widget.country.c_icon), StandardList()],
           ),
         ));
   }
@@ -37,7 +64,7 @@ class InfoList extends StatelessWidget {
     return Expanded(
       child: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: 3,
+          itemCount: _user.length,
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -46,7 +73,7 @@ class InfoList extends StatelessWidget {
                 shadowColor: Colors.blueAccent,
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  title: "${country.c_name}".text.bold.xl2.make(),
+                  title: "${_user[index]['country']}".text.bold.xl2.make(),
                   trailing: ElevatedButton(
                     child: "  Open  ".text.make(),
                     onPressed: () {},

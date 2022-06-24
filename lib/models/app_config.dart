@@ -79,3 +79,8 @@
 //         app_desc.hashCode;
 //   }
 // }
+import 'package:http/http.dart' as http;
+
+class JsonServer {
+  static String url = "http://127.0.0.1:3000/";
+}
