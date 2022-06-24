@@ -1,4 +1,4 @@
-import 'package:ezrisk/pages/list.dart';
+import 'package:ezrisk/pages/info_list.dart';
 import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
 import 'package:get/get.dart';
@@ -63,50 +63,50 @@ class _DrawerMenuState extends State<DrawerMenu> {
                     Divider(
                       color: Colors.black,
                     ),
-                    ExpansionTile(
-                      childrenPadding: EdgeInsets.only(left: 15),
-                      collapsedIconColor: Colors.blue,
-                      leading: Icon(Icons.all_inbox_outlined),
-                      title: "Documents".text.xl.make(),
-                      children: [
-                        ListTile(
-                          selectedTileColor: Colors.grey[300],
-                          selected: _isSelected == 2,
-                          iconColor: Colors.blue,
-                          leading: Icon(Icons.circle_outlined),
-                          title: "Laws".text.xl.make(),
-                          onTap: () {
-                            // changeSelected(2);
-                            // Get.to(() => InfoList());
-                          },
-                        ),
-                        ListTile(
-                          selectedTileColor: Colors.grey[300],
-                          selected: _isSelected == 2,
-                          iconColor: Colors.blue,
-                          leading: Icon(Icons.circle_outlined),
-                          title: "Sections".text.xl.make(),
-                          onTap: () {
-                            // changeSelected(2);
-                            // Get.to(() => ManageStandards());
-                          },
-                        ),
-                        ListTile(
-                          selectedTileColor: Colors.grey[300],
-                          selected: _isSelected == 2,
-                          iconColor: Colors.blue,
-                          leading: Icon(Icons.circle_outlined),
-                          title: "Regulatories".text.xl.make(),
-                          onTap: () {
-                            // changeSelected(2);
-                            // Get.to(() => ManageStandards());
-                          },
-                        ),
-                      ],
-                      // onTap: () {
-                      //   changeSelected(1);
-                      // } // Te
-                    ),
+                    // ExpansionTile(
+                    //   childrenPadding: EdgeInsets.only(left: 15),
+                    //   collapsedIconColor: Colors.blue,
+                    //   leading: Icon(Icons.all_inbox_outlined),
+                    //   title: "Documents".text.xl.make(),
+                    //   children: [
+                    //     ListTile(
+                    //       selectedTileColor: Colors.grey[300],
+                    //       selected: _isSelected == 2,
+                    //       iconColor: Colors.blue,
+                    //       leading: Icon(Icons.circle_outlined),
+                    //       title: "Laws".text.xl.make(),
+                    //       onTap: () {
+                    //         // changeSelected(2);
+                    //         // Get.to(() => InfoList());
+                    //       },
+                    //     ),
+                    //     ListTile(
+                    //       selectedTileColor: Colors.grey[300],
+                    //       selected: _isSelected == 2,
+                    //       iconColor: Colors.blue,
+                    //       leading: Icon(Icons.circle_outlined),
+                    //       title: "Sections".text.xl.make(),
+                    //       onTap: () {
+                    //         // changeSelected(2);
+                    //         // Get.to(() => ManageStandards());
+                    //       },
+                    //     ),
+                    //     ListTile(
+                    //       selectedTileColor: Colors.grey[300],
+                    //       selected: _isSelected == 2,
+                    //       iconColor: Colors.blue,
+                    //       leading: Icon(Icons.circle_outlined),
+                    //       title: "Regulatories".text.xl.make(),
+                    //       onTap: () {
+                    //         // changeSelected(2);
+                    //         // Get.to(() => ManageStandards());
+                    //       },
+                    //     ),
+                    //   ],
+                    //   // onTap: () {
+                    //   //   changeSelected(1);
+                    //   // } // Te
+                    // ),
                     ListTile(
                       selectedTileColor: Colors.grey[300],
                       selected: _isSelected == 2,
@@ -137,26 +137,26 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           // changeSelected(5);
                           // Get.offAllNamed('/logIn');
                         }),
-                    ListTile(
-                        selectedTileColor: Colors.grey[200],
-                        selected: _isSelected == 3,
-                        iconColor: Colors.blue,
-                        leading: Icon(Icons.settings_applications_outlined),
-                        title: "Settings".text.xl.make(),
-                        onTap: () {
-                          // changeSelected(4);
-                        }),
-                    ListTile(
-                        selectedTileColor: Colors.grey[300],
-                        selected: _isSelected == 4,
-                        iconColor: Colors.blue,
-                        leading: Icon(Icons.logout),
-                        title: "Log Out".text.xl.make(),
-                        onTap: () {
-                          // changeSelected(5);
-                          Get.offAllNamed('/login');
-                        } // Te
-                        ),
+                    // ListTile(
+                    //     selectedTileColor: Colors.grey[200],
+                    //     selected: _isSelected == 3,
+                    //     iconColor: Colors.blue,
+                    //     leading: Icon(Icons.settings_applications_outlined),
+                    //     title: "Settings".text.xl.make(),
+                    //     onTap: () {
+                    //       // changeSelected(4);
+                    //     }),
+                    // ListTile(
+                    //     selectedTileColor: Colors.grey[300],
+                    //     selected: _isSelected == 4,
+                    //     iconColor: Colors.blue,
+                    //     leading: Icon(Icons.logout),
+                    //     title: "Log Out".text.xl.make(),
+                    //     onTap: () {
+                    //       // changeSelected(5);
+                    //       Get.offAllNamed('/login');
+                    //     } // Te
+                    //     ),
                   ],
                 ),
               ),

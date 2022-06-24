@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:ezrisk/models/contry.dart';
-import 'package:ezrisk/pages/forgot_password_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 import 'package:ezrisk/models/app_config.dart';
 import 'package:http/http.dart' as http;

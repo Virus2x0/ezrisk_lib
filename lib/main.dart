@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
               ),
           '/login': (context) => LogInPage(),
           '/home': (context) => HomePage(),
-          // '/country': (context) => ChooseCountry()
         });
   }
 }

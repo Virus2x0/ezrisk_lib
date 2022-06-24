@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/contry.dart';
-import '../list.dart';
+import '../info_list.dart';
 
 class CountryFlag extends StatelessWidget {
   const CountryFlag({Key? key}) : super(key: key);

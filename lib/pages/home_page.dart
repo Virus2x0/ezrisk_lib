@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final url = "https://mocki.io/v1/6369382c-cb9d-4134-abac-4e616e1360cf";
-  final url1 = "https://mocki.io/v1/72c37950-ffd1-44b4-b60e-c4b55cf17b8ba";
+
   late String app_logo;
   // late bool _loading;
   @override
@@ -43,16 +43,6 @@ class _HomePageState extends State<HomePage> {
         List.from(CountryData).map<Item>((item) => Item.fromMap(item)).toList();
     setState(() {});
   }
-
-  //!! by Faizan
-  // loadData2() async {
-  //   final response = await http.get(Uri.parse(url1));
-  //   final countryJson = response.body;
-  //   final decodeData = jsonDecode(countryJson);
-  //   app_logo = decodeData[0]['app_logo'];
-
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
