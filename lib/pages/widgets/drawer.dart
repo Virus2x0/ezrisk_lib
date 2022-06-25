@@ -1,8 +1,11 @@
+import 'package:ezrisk/pages/about_us.dart';
 import 'package:ezrisk/pages/info_list.dart';
+import 'package:ezrisk/pages/pdf_page.dart';
 import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
 import 'package:get/get.dart';
 
+import '../faq_page.dart';
 import '../home_page.dart';
 
 class DrawerMenu extends StatefulWidget {
@@ -115,7 +118,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                       title: "About Us".text.xl.make(),
                       onTap: () {
                         // changeSelected(2);
-                        // Get.to(() => ManageStandards());
+                        Get.to(() => AboutUs());
                       }, // Te
                     ),
                     ListTile(
@@ -125,7 +128,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                         leading: Icon(Icons.question_answer_outlined),
                         title: "FAQs".text.xl.make(),
                         onTap: () {
-                          // changeSelected(3);
+                          Get.to(() => FAQ());
                         }),
                     ListTile(
                         selectedTileColor: Colors.grey[300],
@@ -146,17 +149,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
                     //     onTap: () {
                     //       // changeSelected(4);
                     //     }),
-                    // ListTile(
-                    //     selectedTileColor: Colors.grey[300],
-                    //     selected: _isSelected == 4,
-                    //     iconColor: Colors.blue,
-                    //     leading: Icon(Icons.logout),
-                    //     title: "Log Out".text.xl.make(),
-                    //     onTap: () {
-                    //       // changeSelected(5);
-                    //       Get.offAllNamed('/login');
-                    //     } // Te
-                    //     ),
+                    ListTile(
+                        selectedTileColor: Colors.grey[300],
+                        selected: _isSelected == 4,
+                        iconColor: Colors.blue,
+                        leading: Icon(Icons.logout),
+                        title: "Log Out".text.xl.make(),
+                        onTap: () {
+                          // changeSelected(5);
+                          Get.to(() => PDFPage());
+                        } // Te
+                        ),
                   ],
                 ),
               ),

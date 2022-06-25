@@ -1,42 +1,8 @@
-import 'dart:convert';
-
-import 'package:ezrisk/pages/pdf_page.dart';
 import 'package:flutter/material.dart';
-
 import 'package:velocity_x/velocity_x.dart';
-import 'package:ezrisk/models/app_config.dart';
-import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
 
-class DetailsFile extends StatefulWidget {
-  final userSec;
-
-  const DetailsFile({Key? key, required this.userSec}) : super(key: key);
-
-  @override
-  State<DetailsFile> createState() => _DetailsFileState();
-}
-
-class _DetailsFileState extends State<DetailsFile> {
-  late List _users = [];
-
-  void loadData() async {
-    String sec_id = widget.userSec;
-    String country = "country/";
-
-    var url = Uri.parse(JsonServer.url + country + sec_id);
-    var response = await http.get(url);
-    var JsonDecode = jsonDecode(response.body);
-    print(url);
-    _users = JsonDecode;
-
-    setState(() {});
-  }
-
-  void initState() {
-    super.initState();
-    loadData();
-  }
+class FAQ extends StatelessWidget {
+  const FAQ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,42 +19,43 @@ class _DetailsFileState extends State<DetailsFile> {
               icon: Icon(Icons.search),
             ),
           ],
-          // title: "${widget.country.c_name}".text.make(),
+          title: "FAQs".text.make(),
           centerTitle: true,
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
           child: Column(
-            children: [
-              //Image.network(widget.country.c_icon),
-              DetailsList()
-            ],
+            children: [FAQList()],
           ),
         ));
   }
 
-  Widget DetailsList() {
+  Widget FAQList() {
     return Expanded(
       child: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: _users.length,
-          physics: NeverScrollableScrollPhysics(),
+          itemCount: 2,
           shrinkWrap: true,
           itemBuilder: (context, index) {
+            // final userSec = _user[index]['sec_id'];
+            // print(userSec);
             return Card(
                 elevation: 8,
                 shadowColor: Colors.blueAccent,
-                child: ListTile(
+                child: ExpansionTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  //!! yahha likhnaa
-                  title: "${_users[index]['rules']}".text.bold.xl2.make(),
-                  subtitle: "${_users[index]['regulation']}".text.make(),
-                  trailing: ElevatedButton(
-                    child: "  Open  ".text.make(),
-                    onPressed: () {
-                      Get.to(() => PDFPage());
-                    },
-                  ),
+                  title: "Q.1 Sample FAQ Questions".text.bold.make(),
+                  // subtitle: "${_user[index]['sec_id']}".text.make(),
+
+                  // Get.to(() => DetailsFile(userSec: userSec));
+                  children: [
+                    ListTile(
+                      title:
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                              .text
+                              .make(),
+                    )
+                  ],
                 ));
           },
         ),

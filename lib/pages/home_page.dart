@@ -4,8 +4,8 @@ import 'dart:convert';
 
 import 'package:ezrisk/api_sevice/api.dart';
 import 'package:ezrisk/models/app_config.dart';
-import 'package:ezrisk/pages/HomePageWigets/CarouselCard.dart';
-import 'package:ezrisk/pages/HomePageWigets/counryFlag.dart';
+import 'package:ezrisk/pages/HomePageWigets/carousel_card.dart';
+import 'package:ezrisk/pages/HomePageWigets/counry_flag.dart';
 import 'package:ezrisk/pages/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';

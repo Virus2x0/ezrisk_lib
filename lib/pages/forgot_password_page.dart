@@ -7,32 +7,13 @@ import 'package:ezrisk/models/app_config.dart';
 import 'package:http/http.dart' as http;
 
 class ForgotPasswordPage extends StatefulWidget {
-  final userSec;
-  const ForgotPasswordPage({Key? key, required this.userSec}) : super(key: key);
+  const ForgotPasswordPage({Key? key}) : super(key: key);
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  late List _user = [];
-
-  void loadData() async {
-    String sec_id = widget.userSec;
-    String country = "country";
-
-    var url = Uri.parse(JsonServer.url + country + sec_id);
-    var response = await http.get(url);
-    var JsonDecode = jsonDecode(response.body);
-    _user = JsonDecode;
-    setState(() {});
-  }
-
-  void initState() {
-    super.initState();
-    loadData();
-  }
-
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

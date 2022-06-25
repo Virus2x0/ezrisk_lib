@@ -1,3 +1,9 @@
+import 'package:ezrisk/pages/detailFiles.dart';
+import 'package:ezrisk/pages/faq_page.dart';
+import 'package:ezrisk/pages/forgot_password_page.dart';
+import 'package:ezrisk/pages/in_boarding_screen.dart';
+import 'package:ezrisk/pages/info_list.dart';
+import 'package:ezrisk/pages/pdf_page.dart';
 import 'package:ezrisk/pages/welcome_spalsh.dart';
 import 'package:ezrisk/pages/home_page.dart';
 import 'package:ezrisk/pages/logIn_page.dart';
@@ -25,13 +31,17 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        initialRoute: '/',
+        initialRoute: '/inBord',
         routes: {
           '/': (context) => WelcomeSplash(
                 isSeen: isSeen,
               ),
           '/login': (context) => LogInPage(),
           '/home': (context) => HomePage(),
+          '/faq': (context) => FAQ(),
+          '/fgtpass': (context) => ForgotPasswordPage(),
+          '/pdf': (context) => PDFPage(),
+          '/inBord': (context) => InBoardingScreen(),
         });
   }
 }
