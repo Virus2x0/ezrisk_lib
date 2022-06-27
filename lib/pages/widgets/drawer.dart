@@ -1,8 +1,10 @@
 import 'package:ezrisk/pages/about_us.dart';
+import 'package:ezrisk/pages/feedback_page.dart';
 import 'package:ezrisk/pages/info_list.dart';
 import 'package:ezrisk/pages/pdf_page.dart';
 import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
+import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 
 import '../faq_page.dart';
@@ -131,35 +133,35 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           Get.to(() => FAQ());
                         }),
                     ListTile(
+                        selectedTileColor: Colors.grey[200],
+                        selected: _isSelected == 3,
+                        iconColor: Colors.blue,
+                        leading: Icon(Icons.feed_outlined),
+                        title: "Feedback".text.xl.make(),
+                        onTap: () {
+                          Get.to(() => FeedBack());
+                        }),
+                    ListTile(
                         selectedTileColor: Colors.grey[300],
                         selected: _isSelected == 4,
                         iconColor: Colors.blue,
                         leading: Icon(Icons.star_border_outlined),
                         title: "Rate Us".text.xl.make(),
                         onTap: () {
-                          // changeSelected(5);
-                          // Get.offAllNamed('/logIn');
+                          _launchURL();
                         }),
-                    // ListTile(
-                    //     selectedTileColor: Colors.grey[200],
-                    //     selected: _isSelected == 3,
-                    //     iconColor: Colors.blue,
-                    //     leading: Icon(Icons.settings_applications_outlined),
-                    //     title: "Settings".text.xl.make(),
-                    //     onTap: () {
-                    //       // changeSelected(4);
-                    //     }),
-                    ListTile(
-                        selectedTileColor: Colors.grey[300],
-                        selected: _isSelected == 4,
-                        iconColor: Colors.blue,
-                        leading: Icon(Icons.logout),
-                        title: "Log Out".text.xl.make(),
-                        onTap: () {
-                          // changeSelected(5);
-                          Get.to(() => PDFPage());
-                        } // Te
-                        ),
+
+                    //   ListTile(
+                    //       selectedTileColor: Colors.grey[300],
+                    //       selected: _isSelected == 4,
+                    //       iconColor: Colors.blue,
+                    //       leading: Icon(Icons.logout),
+                    //       title: "Log Out".text.xl.make(),
+                    //       onTap: () {
+                    //         // changeSelected(5);
+                    //         Get.to(() => PDFPage());
+                    //       } // Te
+                    //       ),
                   ],
                 ),
               ),
@@ -168,5 +170,16 @@ class _DrawerMenuState extends State<DrawerMenu> {
         ),
       ),
     );
+  }
+}
+
+_launchURL() async {
+  const url = 'https://flutter.dev';
+  // ignore: deprecated_member_use
+  if (await canLaunch(url)) {
+    // ignore: deprecated_member_use
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

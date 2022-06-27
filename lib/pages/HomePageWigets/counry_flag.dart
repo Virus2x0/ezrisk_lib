@@ -24,12 +24,10 @@ class CountryFlag extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => InfoList(
                                 country: country,
-
-                                // goes on as per the index num of product
                               ))),
                   child: CircleAvatar(
-                      // backgroundImage: NetworkImage(country.c_icon),
-                      ),
+                    backgroundImage: NetworkImage(country.c_icon),
+                  ),
                 ),
               );
               // return Container(

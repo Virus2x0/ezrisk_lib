@@ -41,7 +41,6 @@ class FAQ extends StatelessWidget {
             // print(userSec);
             return Card(
                 elevation: 8,
-                shadowColor: Colors.blueAccent,
                 child: ExpansionTile(
                   leading: Icon(Icons.clear_all_sharp),
                   title: "Q.1 Sample FAQ Questions".text.bold.make(),

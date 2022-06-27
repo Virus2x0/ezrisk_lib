@@ -14,7 +14,7 @@ class _PDFPageState extends State<PDFPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: "Hekki".text.make()),
+        appBar: AppBar(title: "PDF Demo".text.make()),
         body: SfPdfViewer.network(
             'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'));
   }

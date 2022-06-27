@@ -18,6 +18,7 @@ class InfoList extends StatefulWidget {
 
 class _InfoListState extends State<InfoList> {
   late List _user = [];
+  List Dummy = ["Laws", "Standards", "Regulatories", "National Regulatories"];
 
   void loadData() async {
     String id = widget.country.c_id.toString();
@@ -54,8 +55,20 @@ class _InfoListState extends State<InfoList> {
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
-          child: Column(
-            children: [Image.network(widget.country.c_icon), StandardList()],
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 8,
+                      child: Image.network(widget.country.c_icon)),
+                ),
+                StandardList()
+              ],
+            ),
           ),
         ));
   }
@@ -64,27 +77,31 @@ class _InfoListState extends State<InfoList> {
     return Expanded(
       child: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: _user.length,
+          // itemCount: _user.length,
+          itemCount: Dummy.length,
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            final userSec = _user[index]['sec_id'];
-            print(userSec);
+            // final userSec = _user[index]['sec_id'];
+            // print(userSec);
             return Card(
                 elevation: 8,
-                shadowColor: Colors.blueAccent,
+                // shadowColor: Colors.blueAccent,
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  title: "${_user[index]['cat_name']}".text.bold.xl2.make(),
-                  subtitle: "${_user[index]['sec_id']}".text.make(),
+                  title: "${Dummy[index]}".text.bold.xl2.make(),
+                  // subtitle: "${_user[index]['sec_id']}".text.make(),
+                  // title: "Laws".text.bold.xl2.make(),
+                  // subtitle: "${_user[index]['sec_id']}".text.make(),
                   trailing: ElevatedButton(
-                    child: "  Open  ".text.make(),
+                    child: Icon(Icons.arrow_forward_ios),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  DetailsFile(userSec: userSec)));
+                                  // DetailsFile(userSec: userSec)));
+                                  DetailsFile()));
                       // Get.to(() => DetailsFile(userSec: userSec));
                     },
                   ),

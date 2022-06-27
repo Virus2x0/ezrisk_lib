@@ -49,7 +49,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: DrawerMenu(),
       appBar: AppBar(
-          // title: Image.network(app_logo, fit: BoxFit.cover),
+          title: "EzRisk".text.bold.make(),
+          centerTitle: true,
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))]),
       body: Container(
         color: Colors.white,

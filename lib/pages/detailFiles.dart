@@ -9,9 +9,9 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
 class DetailsFile extends StatefulWidget {
-  final userSec;
+  // final userSec;
 
-  const DetailsFile({Key? key, required this.userSec}) : super(key: key);
+  // const   DetailsFile({Key? key, required this.userSec}) : super(key: key);
 
   @override
   State<DetailsFile> createState() => _DetailsFileState();
@@ -21,14 +21,14 @@ class _DetailsFileState extends State<DetailsFile> {
   late List _users = [];
 
   void loadData() async {
-    String sec_id = widget.userSec;
+    // String sec_id = widget.userSec;
     String country = "country/";
 
-    var url = Uri.parse(JsonServer.url + country + sec_id);
-    var response = await http.get(url);
-    var JsonDecode = jsonDecode(response.body);
-    print(url);
-    _users = JsonDecode;
+    // var url = Uri.parse(JsonServer.url + country + sec_id);
+    // var response = await http.get(url);
+    // var JsonDecode = jsonDecode(response.body);
+    // print(url);
+    // _users = JsonDecode;
 
     setState(() {});
   }
@@ -53,7 +53,7 @@ class _DetailsFileState extends State<DetailsFile> {
               icon: Icon(Icons.search),
             ),
           ],
-          // title: "${widget.country.c_name}".text.make(),
+          title: "laws1".text.make(),
           centerTitle: true,
         ),
         body: Padding(
@@ -71,7 +71,8 @@ class _DetailsFileState extends State<DetailsFile> {
     return Expanded(
       child: SingleChildScrollView(
         child: ListView.builder(
-          itemCount: _users.length,
+          // itemCount: _users.length,
+          itemCount: 3,
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -81,10 +82,12 @@ class _DetailsFileState extends State<DetailsFile> {
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
                   //!! yahha likhnaa
-                  title: "${_users[index]['rules']}".text.bold.xl2.make(),
-                  subtitle: "${_users[index]['regulation']}".text.make(),
+                  // title: "${_users[index]['rules']}".text.bold.xl2.make(),
+                  // subtitle: "${_users[index]['regulation']}".text.make(),
+                  title: "Law1".text.bold.xl2.make(),
+
                   trailing: ElevatedButton(
-                    child: "  Open  ".text.make(),
+                    child: "  Open PDF ".text.make(),
                     onPressed: () {
                       Get.to(() => PDFPage());
                     },
