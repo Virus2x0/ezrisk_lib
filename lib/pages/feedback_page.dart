@@ -38,7 +38,7 @@ class _FeedBackState extends State<FeedBack> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -80,6 +80,31 @@ class _FeedBackState extends State<FeedBack> {
                         : "Please enter valid Email.",
                   ),
                 ),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 5, //Normal textInputField will be displayed
+                    maxLines: 5,
+                    decoration: InputDecoration(
+                      // floatingLabelAlignment: FloatingLabelAlignment.,
+                      hintText: 'Comments/Suggetions',
+                      labelText: 'Comments',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(
+                          15,
+                        ),
+                      ),
+                      prefixIcon: Icon(Icons.insert_comment),
+                    ),
+                    validator: (input) => input!.isEmpty
+                        ? null
+                        : "Please give your comment/feedback.",
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -109,7 +134,7 @@ class _FeedBackState extends State<FeedBack> {
                   ),
                 ),
                 SizedBox(
-                  height: 80,
+                  height: 30,
                 ),
                 Image.asset("assets/images/feedback.png"),
               ],

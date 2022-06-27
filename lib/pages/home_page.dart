@@ -23,6 +23,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final url = "https://mocki.io/v1/6369382c-cb9d-4134-abac-4e616e1360cf";
 
+  bool isLoad = true;
+
   late String app_logo;
   // late bool _loading;
   @override
@@ -66,7 +68,10 @@ class _HomePageState extends State<HomePage> {
                 Icon(Icons.flag_outlined),
               ],
             ),
-            CountryFlag(),
+            if (CountryModel.items != null && CountryModel.items.isNotEmpty)
+              CountryFlag()
+            else
+              CircularProgressIndicator().centered().expand(),
             Expanded(
               child: Image.asset(
                 "assets/images/world.png",
