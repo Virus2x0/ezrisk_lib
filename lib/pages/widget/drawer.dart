@@ -1,7 +1,6 @@
 import 'package:ezrisk/pages/about_us.dart';
 import 'package:ezrisk/pages/feedback_page.dart';
-import 'package:ezrisk/pages/info_list.dart';
-import 'package:ezrisk/pages/pdf_page.dart';
+import 'package:ezrisk/pages/logIn_page.dart';
 import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
 import 'package:url_launcher/url_launcher.dart';
@@ -42,10 +41,11 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   currentAccountPicture: CircleAvatar(
                     radius: 60.0,
                     backgroundColor: Color.fromARGB(255, 220, 225, 230),
-                    // child: Image.asset(
-                    //   "asset/images/1.png",
-                    //   fit: BoxFit.fill,
-                    // ),
+                    child: Image.asset(
+                      "assets/images/ezrisk_logo.png",
+                      fit: BoxFit.cover,
+                      color: Colors.blue,
+                    ),
                   ),
                 )),
             Padding(
@@ -151,17 +151,15 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           _launchURL();
                         }),
 
-                    //   ListTile(
-                    //       selectedTileColor: Colors.grey[300],
-                    //       selected: _isSelected == 4,
-                    //       iconColor: Colors.blue,
-                    //       leading: Icon(Icons.logout),
-                    //       title: "Log Out".text.xl.make(),
-                    //       onTap: () {
-                    //         // changeSelected(5);
-                    //         Get.to(() => PDFPage());
-                    //       } // Te
-                    //       ),
+                    ListTile(
+                        selectedTileColor: Colors.grey[300],
+                        selected: _isSelected == 4,
+                        iconColor: Colors.blue,
+                        leading: Icon(Icons.logout),
+                        title: "Log Out".text.xl.make(),
+                        onTap: () {
+                          Get.to(() => LogInPage());
+                        }),
                   ],
                 ),
               ),
@@ -173,13 +171,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
   }
 }
 
-_launchURL() async {
+_launchURL() {
   const url = 'https://flutter.dev';
+
   // ignore: deprecated_member_use
-  if (await canLaunch(url)) {
-    // ignore: deprecated_member_use
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
+  launch(url);
 }

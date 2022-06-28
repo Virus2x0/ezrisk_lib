@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:ezrisk/pages/widgets/email_validator.dart';
+import 'package:ezrisk/pages/widget/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ezrisk/models/app_config.dart';
-import 'package:http/http.dart' as http;
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -28,8 +24,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Container(
               width: 250,
               height: 200,
-              // color: Colors.amber,
-              // child: Image.asset("asset/images/ezrisk.png"),
+              child: Image.asset(
+                "assets/images/ezrisk_logo.png",
+                color: Colors.blue,
+              ),
             ),
           ),
           Padding(
@@ -55,7 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               key: _formKey,
               child: TextFormField(
                 validator: (input) =>
-                    input!.isValidEmail() ? null : "Please enter valid Email.",
+                    input!.isValidEmail() ? null : "Please Enter Valid Email.",
                 decoration: InputDecoration(
                   hintText: "Enter Valid Email",
                   border: OutlineInputBorder(),
@@ -75,9 +73,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       "Done✔️",
                       "Link to reset your password has been sent to your email",
                       snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.indigo.shade400,
+                      backgroundColor: Colors.blue[200],
                     );
-                    Get.offAllNamed('/logIn');
+                    Get.offAllNamed('/login');
                   }
                 },
                 child: Text(

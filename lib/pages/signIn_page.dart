@@ -1,19 +1,16 @@
-import 'package:ezrisk/pages/signIn_page.dart';
 import 'package:ezrisk/pages/widget/email_validator.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'forgot_password_page.dart';
 import 'home_page.dart';
 
-class LogInPage extends StatefulWidget {
-  const LogInPage({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<LogInPage> createState() => _LogInPageState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _SignUpState extends State<SignUp> {
   TextEditingController emailCotroller = TextEditingController();
   TextEditingController passwordCotroller = TextEditingController();
 
@@ -30,6 +27,7 @@ class _LogInPageState extends State<LogInPage> {
   // }
 
   bool _isObscure = true;
+  var confirmPass;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +51,7 @@ class _LogInPageState extends State<LogInPage> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
-                "LOGIN ",
+                "SIGN UP",
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
@@ -62,7 +60,7 @@ class _LogInPageState extends State<LogInPage> {
               padding:
                   const EdgeInsets.only(left: 15, top: 0, right: 15, bottom: 0),
               child: Text(
-                  "Please Login to your account and start the adventure!",
+                  "Please sign-in to your account and start the adventure!",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
             ),
@@ -85,6 +83,7 @@ class _LogInPageState extends State<LogInPage> {
                   left: 15, top: 15, right: 15, bottom: 0),
               child: TextFormField(
                 validator: (input) {
+                  confirmPass = input;
                   if (input!.isEmpty)
                     return "Enter Your Passowrd";
                   else if (input.length < 3)
@@ -92,11 +91,28 @@ class _LogInPageState extends State<LogInPage> {
                   return null;
                 },
                 // onSaved: (input) => requestModel.password = input!,
-                obscureText: _isObscure,
+
                 decoration: InputDecoration(
-                    hintText: "Enter Password",
+                  hintText: "Enter Password",
+                  border: OutlineInputBorder(),
+                  labelText: "Password",
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15, top: 15, right: 15, bottom: 0),
+              child: TextFormField(
+                validator: (input) {
+                  if (input != confirmPass) return "Password Does Not Match.";
+                  return null;
+                },
+                // onSaved: (input) => requestModel.password = input!,
+                obscureText: true,
+                decoration: InputDecoration(
+                    hintText: "Enter Confirm Password",
                     border: OutlineInputBorder(),
-                    labelText: "Password",
+                    labelText: "Confirm Password",
                     suffixIcon: IconButton(
                       icon: Icon(
                           _isObscure ? Icons.visibility : Icons.visibility_off),
@@ -110,19 +126,10 @@ class _LogInPageState extends State<LogInPage> {
             ),
             TextButton(
                 onPressed: () {
-                  Get.to(() => SignUp());
-                },
-                autofocus: true,
-                child: Text(
-                  "New Here? Join Us",
-                  style: TextStyle(color: Colors.blue[800]),
-                )),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => ForgotPasswordPage());
+                  Get.offAllNamed('/login');
                 },
                 child: Text(
-                  "Forgot Password? ",
+                  "Already Have Account? LogIn Here",
                   style: TextStyle(color: Colors.blue[800]),
                 )),
             SizedBox(
@@ -135,7 +142,7 @@ class _LogInPageState extends State<LogInPage> {
                     }
                   },
                   child: Text(
-                    "LogIn ",
+                    "Join US",
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   )),

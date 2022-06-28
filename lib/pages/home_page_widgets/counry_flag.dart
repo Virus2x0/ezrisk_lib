@@ -11,6 +11,7 @@ class CountryFlag extends StatelessWidget {
     return Container(
         height: 300,
         child: GridView.builder(
+            shrinkWrap: true,
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
             itemCount: CountryModel.items.length,

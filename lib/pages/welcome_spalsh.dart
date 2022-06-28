@@ -31,24 +31,25 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.network(
-            "https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png",
+          Image.asset(
+            "assets/images/ezrisk_logo.png",
             height: 150,
             width: 150,
           ),
           const SizedBox(
             height: 16,
           ),
-          Center(
-            child: Text(
-              "Welcome",
-              style: TextStyle(fontSize: 25),
-            ),
-          )
+          // Center(
+          //   child: Text(
+          //     "Welcome",
+          //     style: TextStyle(fontSize: 25),
+          //   ),
+          // )
         ],
       ),
     );

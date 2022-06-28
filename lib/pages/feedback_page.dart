@@ -1,5 +1,6 @@
-import 'package:ezrisk/pages/widgets/email_validator.dart';
-
+import 'package:ezrisk/pages/widget/default_appbar.dart';
+import 'package:ezrisk/pages/widget/email_validator.dart';
+import 'package:ezrisk/pages/widget/page_title.dart';
 import 'package:flutter/material.dart';
 import "package:velocity_x/velocity_x.dart";
 
@@ -12,21 +13,11 @@ class FeedBack extends StatefulWidget {
 
 class _FeedBackState extends State<FeedBack> {
   final _formKey = GlobalKey<FormState>();
-  bool _isObscure = true;
+  // bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'FeedBack',
-          style: TextStyle(
-            fontSize: 19,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: DAppbar(),
       body: Container(
         color: Colors.white,
         height: MediaQuery.of(context).size.height,
@@ -37,6 +28,7 @@ class _FeedBackState extends State<FeedBack> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                DTitle(title: "Feedback"),
                 SizedBox(
                   height: 10,
                 ),
@@ -57,6 +49,7 @@ class _FeedBackState extends State<FeedBack> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) return "Please enter Auditee Name.";
+                      return null;
                     },
                   ),
                 ),
@@ -87,12 +80,13 @@ class _FeedBackState extends State<FeedBack> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     keyboardType: TextInputType.multiline,
-                    minLines: 5, //Normal textInputField will be displayed
-                    maxLines: 5,
+                    minLines: 3, //Normal textInputField will be displayed
+                    maxLines: null,
                     decoration: InputDecoration(
                       // floatingLabelAlignment: FloatingLabelAlignment.,
                       hintText: 'Comments/Suggetions',
                       labelText: 'Comments',
+
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(
                           15,
@@ -101,8 +95,8 @@ class _FeedBackState extends State<FeedBack> {
                       prefixIcon: Icon(Icons.insert_comment),
                     ),
                     validator: (input) => input!.isEmpty
-                        ? null
-                        : "Please give your comment/feedback.",
+                        ? "Please give your comment/feedback."
+                        : null,
                   ),
                 ),
                 SizedBox(

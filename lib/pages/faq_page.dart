@@ -1,3 +1,4 @@
+import 'package:ezrisk/pages/widget/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,13 +20,20 @@ class FAQ extends StatelessWidget {
               icon: Icon(Icons.search),
             ),
           ],
-          title: "FAQs".text.make(),
+          title: Image.asset(
+            "assets/images/ezrisk_logo.png",
+            height: 65,
+          ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(15),
+          )),
           centerTitle: true,
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
           child: Column(
-            children: [FAQList()],
+            children: [DTitle(title: "FAQs"), FAQList()],
           ),
         ));
   }

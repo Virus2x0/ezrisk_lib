@@ -1,17 +1,16 @@
 // ignore_for_file: unnecessary_null_comparison
-
 import 'dart:convert';
 
-import 'package:ezrisk/api_sevice/api.dart';
-import 'package:ezrisk/models/app_config.dart';
-import 'package:ezrisk/pages/HomePageWigets/carousel_card.dart';
-import 'package:ezrisk/pages/HomePageWigets/counry_flag.dart';
-import 'package:ezrisk/pages/widgets/drawer.dart';
+import 'package:ezrisk/pages/widget/default_appbar.dart';
+import 'package:ezrisk/pages/widget/drawer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/contry.dart';
+
+import 'home_page_widgets/carousel_card.dart';
+import 'home_page_widgets/counry_flag.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,10 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final url = "https://mocki.io/v1/6369382c-cb9d-4134-abac-4e616e1360cf";
-
+  final url = "https://mocki.io/v1/3a129353-9e63-42e3-adf5-d04acdfe5605";
   bool isLoad = true;
-
   late String app_logo;
   // late bool _loading;
   @override
@@ -50,10 +47,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerMenu(),
-      appBar: AppBar(
-          title: "EzRisk".text.bold.make(),
-          centerTitle: true,
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))]),
+      appBar: DAppbar(),
       body: Container(
         color: Colors.white,
         child: Column(

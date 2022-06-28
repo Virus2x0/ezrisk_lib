@@ -1,9 +1,6 @@
-import 'package:ezrisk/pages/detailFiles.dart';
 import 'package:ezrisk/pages/faq_page.dart';
-import 'package:ezrisk/pages/feedback_page.dart';
 import 'package:ezrisk/pages/forgot_password_page.dart';
 import 'package:ezrisk/pages/in_boarding_screen.dart';
-import 'package:ezrisk/pages/info_list.dart';
 import 'package:ezrisk/pages/pdf_page.dart';
 import 'package:ezrisk/pages/welcome_spalsh.dart';
 import 'package:ezrisk/pages/home_page.dart';

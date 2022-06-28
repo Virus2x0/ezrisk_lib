@@ -1,11 +1,7 @@
-import 'dart:convert';
 import 'package:ezrisk/models/contry.dart';
 import 'package:ezrisk/pages/detailFiles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:ezrisk/models/app_config.dart';
-import 'package:http/http.dart' as http;
 
 class InfoList extends StatefulWidget {
   final Item country;
@@ -17,16 +13,16 @@ class InfoList extends StatefulWidget {
 }
 
 class _InfoListState extends State<InfoList> {
-  late List _user = [];
+  // late List _user = [];
   List Dummy = ["Laws", "Standards", "Regulatories", "National Regulatories"];
 
   void loadData() async {
-    String id = widget.country.c_id.toString();
+    // String id = widget.country.c_id.toString();
 
-    var url = Uri.parse(JsonServer.url + id);
-    var response = await http.get(url);
-    var JsonDecode = jsonDecode(response.body);
-    _user = JsonDecode;
+    // var url = Uri.parse(JsonServer.url + id);
+    // var response = await http.get(url);
+    // var JsonDecode = jsonDecode(response.body);
+    // _user = JsonDecode;
     setState(() {});
   }
 
@@ -39,19 +35,15 @@ class _InfoListState extends State<InfoList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: MySearchDeleate(),
-                );
-              },
-              icon: Icon(Icons.search),
-            ),
-          ],
-          title: "${widget.country.c_name}".text.make(),
+          title: Image.asset(
+            "assets/images/ezrisk_logo.png",
+            height: 65,
+          ),
           centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(15),
+          )),
         ),
         body: Padding(
           padding: EdgeInsets.all(12),
@@ -82,6 +74,7 @@ class _InfoListState extends State<InfoList> {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
+            final DummyTitle = Dummy[index];
             // final userSec = _user[index]['sec_id'];
             // print(userSec);
             return Card(
@@ -101,7 +94,7 @@ class _InfoListState extends State<InfoList> {
                           MaterialPageRoute(
                               builder: (context) =>
                                   // DetailsFile(userSec: userSec)));
-                                  DetailsFile()));
+                                  DetailsFile(DummyTitle: DummyTitle)));
                       // Get.to(() => DetailsFile(userSec: userSec));
                     },
                   ),
