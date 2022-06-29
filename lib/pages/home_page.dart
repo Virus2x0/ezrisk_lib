@@ -1,14 +1,11 @@
 // ignore_for_file: unnecessary_null_comparison
 import 'dart:convert';
-
 import 'package:ezrisk/pages/widget/default_appbar.dart';
 import 'package:ezrisk/pages/widget/drawer.dart';
-
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:http/http.dart' as http;
 import '../models/contry.dart';
-
 import 'home_page_widgets/carousel_card.dart';
 import 'home_page_widgets/counry_flag.dart';
 
@@ -54,14 +51,6 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 15),
             CaroiselCard(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.flag_outlined),
-                "Select Your Country:".text.underline.xl3.make().p12(),
-                Icon(Icons.flag_outlined),
-              ],
-            ),
             if (CountryModel.items != null && CountryModel.items.isNotEmpty)
               CountryFlag()
             else
