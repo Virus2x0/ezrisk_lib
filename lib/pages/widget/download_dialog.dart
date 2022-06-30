@@ -41,10 +41,27 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     final dir = await getApplicationDocumentsDirectory();
     return "${dir.path}/$filename";
   }
+  
+  
+  Future _getStoragePermission() async {
+    if (await Permission.storage.request().isGranted) {
+      setState(() {
+        permissionGranted = true;
+      });
+    } else if (await Permission.storage.request().isPermanentlyDenied) {
+      await openAppSettings();
+    } else if (await Permission.storage.request().isDenied) {
+      setState(() {
+        permissionGranted = false;
+      });
+    }
+  }
+
 
   @override
   void initState() {
     super.initState();
+    _getStorgePermission();
     startDownloading();
   }
 
