@@ -16,29 +16,36 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
   double progress = 0.0;
 
   void startDownloading() async {
-    const String url =
+     const String url =
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 
     const String fileName = "storage/";
 
     String path = await _getFilePath(fileName);
 
-    await dio.download(
-      url,
-      path,
-      onReceiveProgress: (recivedBytes, totalBytes) {
-        setState(() {
-          progress = recivedBytes / totalBytes;
-        });
+    try {
+      Response response = await dio.get(
+        url,
+        onReceiveProgress: (recivedBytes, totalBytes) {
+          setState(() {
+            progress = recivedBytes / totalBytes;
+          });
 
-        print(progress);
-      },
-      deleteOnError: true,
-    ).then((_) {
-      Navigator.pop(context);
-    });
+          print(progress);
+        },
+      );
+      print(response.headers);
+      File file = File(path);
+      var raf = file.openSync(mode: FileMode.write);
+      // response.data is List<int> type
+      raf.writeFromSync(response.data);
+      await raf.close();
+    } catch (e) {
+      print(e);
+    }
   }
-
+  
+  
   Future<String> _getFilePath(String filename) async {
     final dir = await getApplicationDocumentsDirectory();
     return "${dir.path}/$filename";
