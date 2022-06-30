@@ -11,10 +11,9 @@ class CaroiselCard extends StatefulWidget {
 
 class _CaroiselCardState extends State<CaroiselCard> {
   List dummyCard = [
-    "New Changes ➜",
-    "New Law 2022",
-    "New Section 2022-A",
-    "Amendment 2017",
+    "assets/images/1.png",
+    "assets/images/2.png",
+    "assets/images/3.png",
   ];
   @override
   Widget build(BuildContext context) {
@@ -23,34 +22,31 @@ class _CaroiselCardState extends State<CaroiselCard> {
         CarouselSlider.builder(
           itemCount: dummyCard.length,
           itemBuilder: (BuildContext context, int index, int realIndex) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              child: Card(
-                shadowColor: Colors.black,
-                clipBehavior: Clip.antiAlias,
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+            return InkWell(
+              onTap: () {},
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                child: Card(
+                  shadowColor: Colors.black,
+                  clipBehavior: Clip.antiAlias,
+                  elevation: 15,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: Image.asset("${dummyCard[index]}"),
+                      )),
                 ),
-                child: Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                          Colors.blue,
-                          Colors.black,
-                          Colors.blue,
-                        ])),
-                    child: Center(
-                        child:
-                            "${dummyCard[index]}".text.white.bold.xl4.make())),
               ),
             );
           },
           options: CarouselOptions(
-            height: 170.0,
+            height: 150.0,
             enlargeCenterPage: true,
             autoPlay: true,
             aspectRatio: 16 / 9,
@@ -60,7 +56,7 @@ class _CaroiselCardState extends State<CaroiselCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.flag_outlined),
-            "Select Your Country:".text.underline.xl3.make().p12(),
+            "Select Your Country:".text.underline.bold.xl3.make().p12(),
             Icon(Icons.flag_outlined),
           ],
         ),

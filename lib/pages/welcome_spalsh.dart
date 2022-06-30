@@ -14,10 +14,13 @@ class WelcomeSplash extends StatefulWidget {
 
 class _WelcomeSplashState extends State<WelcomeSplash> {
   final isSeen;
+  bool isLoad = false;
   _WelcomeSplashState({this.isSeen});
 
   void initState() {
     super.initState();
+
+    isLoad = true;
 
     Timer(
         Duration(seconds: 3),
@@ -44,12 +47,56 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
           const SizedBox(
             height: 16,
           ),
-          // Center(
-          //   child: Text(
-          //     "Welcome",
-          //     style: TextStyle(fontSize: 25),
-          //   ),
-          // )
+          Container(
+            height: 300,
+            child: Stack(children: [
+              Positioned(
+                top: 70,
+                right: 5,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  child: Opacity(
+                    opacity: isLoad ? 0 : 1,
+                    child: Image.asset(
+                      "assets/images/ezrisk_logo.png",
+                      height: 80,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 10,
+                child: Opacity(
+                  opacity: 1,
+                  child: Image.asset(
+                    "assets/images/ezrisk_logo.png",
+                    height: 80,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 150,
+                child: Opacity(
+                  opacity: 1,
+                  child: Image.asset(
+                    "assets/images/ezrisk_logo.png",
+                    height: 80,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 200,
+                right: 5,
+                child: Opacity(
+                  opacity: 1,
+                  child: Image.asset(
+                    "assets/images/ezrisk_logo.png",
+                    height: 80,
+                  ),
+                ),
+              )
+            ]),
+          )
         ],
       ),
     );

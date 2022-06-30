@@ -2,6 +2,7 @@ import 'package:ezrisk/pages/widget/default_appbar.dart';
 import 'package:ezrisk/pages/widget/email_validator.dart';
 import 'package:ezrisk/pages/widget/page_title.dart';
 import 'package:flutter/material.dart';
+import 'package:art_sweetalert/art_sweetalert.dart';
 import "package:velocity_x/velocity_x.dart";
 
 class FeedBack extends StatefulWidget {
@@ -108,7 +109,18 @@ class _FeedBackState extends State<FeedBack> {
                     height: 50,
                     child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            //TODO  add upload feed back here
+
+                            ArtSweetAlert.show(
+                                context: context,
+                                artDialogArgs: ArtDialogArgs(
+                                    title: "Thanks For Your Feedback",
+                                    type: ArtSweetAlertType.success,
+                                    // barrierColor: color.theme.canvasColor,
+                                    confirmButtonColor: Colors.blue));
+                            _formKey.currentState?.reset();
+                          }
                         },
                         child: 'Send'.text.xl.make()),
                   ),

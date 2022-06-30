@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DownloadingDialog extends StatefulWidget {
@@ -11,13 +12,14 @@ class DownloadingDialog extends StatefulWidget {
 
 class _DownloadingDialogState extends State<DownloadingDialog> {
   Dio dio = Dio();
+  late bool permissionGranted;
   double progress = 0.0;
 
   void startDownloading() async {
     const String url =
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
 
-    const String fileName = "/storage/";
+    const String fileName = "storage/";
 
     String path = await _getFilePath(fileName);
 
@@ -41,9 +43,8 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     final dir = await getApplicationDocumentsDirectory();
     return "${dir.path}/$filename";
   }
-  
-  
-  Future _getStoragePermission() async {
+
+  Future<void> _getStoragePermission() async {
     if (await Permission.storage.request().isGranted) {
       setState(() {
         permissionGranted = true;
@@ -57,11 +58,10 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     }
   }
 
-
   @override
   void initState() {
     super.initState();
-    _getStorgePermission();
+    _getStoragePermission();
     startDownloading();
   }
 

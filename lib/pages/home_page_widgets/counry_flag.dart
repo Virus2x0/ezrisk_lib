@@ -17,41 +17,45 @@ class CountryFlag extends StatelessWidget {
             itemCount: CountryModel.items.length,
             itemBuilder: (context, index) {
               final country = CountryModel.items[index];
+              // return Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: InkWell(
+              //     onTap: () => Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => InfoList(
+              //                   country: country,
+              //                 ))),
+              //     // child: CircleAvatar(
+              //     //   backgroundImage: NetworkImage(country.c_icon),
+              //     // ),
+              //   ),
+              // );
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(.0),
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => InfoList(
-                                country: country,
-                              ))),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(country.c_icon),
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InfoList(
+                                  country: country,
+                                ))),
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      margin: EdgeInsets.all(10),
+                      height: 90,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(country.c_icon),
+                            fit: BoxFit.cover),
+                        border: Border.all(width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                    ),
                   ),
                 ),
               );
-              // return Container(
-              //   padding: EdgeInsets.all(15),
-              //   margin: EdgeInsets.all(10),
-              //   height: 90,
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         image: NetworkImage(country.c_icon),
-              //         fit: BoxFit.fill),
-              //     border: Border.all(width: 1),
-              //     borderRadius: BorderRadius.all(Radius.circular(50.0)),
-              //   ),
-              // child: Column(
-              //   children: [
-              //     // Image.network(
-              //     //   country.c_icon,
-              //     //   fit: BoxFit.cover,
-              //     // ),
-              //     CountryModel.items[index].c_name.text.make(),
-              //   ],
-              // )
-              // );
             }));
   }
 }
