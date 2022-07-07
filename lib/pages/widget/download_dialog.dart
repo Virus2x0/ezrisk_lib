@@ -23,26 +23,26 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
 
     String path = await _getFilePath(fileName);
 
-    // try {
-    //   Response response = await dio.get(
-    //     url,
-    //     onReceiveProgress: (recivedBytes, totalBytes) {
-    //       setState(() {
-    //         progress = recivedBytes / totalBytes;
-    //       });
+    try {
+      Response response = await dio.get(
+        url,
+        onReceiveProgress: (recivedBytes, totalBytes) {
+          setState(() {
+            progress = recivedBytes / totalBytes;
+          });
 
-    //       print(progress);
-    //     },
-    //   );
-    //   print(response.headers);
-    //   File file = File(path);
-    //   var raf = file.openSync(mode: FileMode.write);
-    //   // response.data is List<int> type
-    //   raf.writeFromSync(response.data);
-    //   await raf.close();
-    // } catch (e) {
-    //   print(e);
-    // }
+          print(progress);
+        },
+      );
+      print(response.headers);
+      File file = File(path);
+      var raf = file.openSync(mode: FileMode.write);
+      // response.data is List<int> type
+      raf.writeFromSync(response.data);
+      await raf.close();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<String> _getFilePath(String filename) async {
