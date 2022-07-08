@@ -1,6 +1,7 @@
 import 'package:ezrisk/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:lottie/lottie.dart';
 
 import 'in_boarding_screen.dart';
 
@@ -34,7 +35,7 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Color.fromRGBO(33, 150, 243, 1),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,58 +45,12 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
             height: 150,
             width: 150,
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          Container(
-            height: 300,
-            child: Stack(children: [
-              Positioned(
-                top: 70,
-                right: 5,
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  child: Opacity(
-                    opacity: isLoad ? 0 : 1,
-                    child: Image.asset(
-                      "assets/images/ezrisk_logo.png",
-                      height: 80,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 10,
-                child: Opacity(
-                  opacity: 1,
-                  child: Image.asset(
-                    "assets/images/ezrisk_logo.png",
-                    height: 80,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 150,
-                child: Opacity(
-                  opacity: 1,
-                  child: Image.asset(
-                    "assets/images/ezrisk_logo.png",
-                    height: 80,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 200,
-                right: 5,
-                child: Opacity(
-                  opacity: 1,
-                  child: Image.asset(
-                    "assets/images/ezrisk_logo.png",
-                    height: 80,
-                  ),
-                ),
-              )
-            ]),
+          SizedBox(height: 60),
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: Lottie.network(
+                "https://assets1.lottiefiles.com/packages/lf20_9evakyqx.json"),
           )
         ],
       ),
