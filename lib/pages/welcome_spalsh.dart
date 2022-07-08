@@ -24,7 +24,7 @@ class _WelcomeSplashState extends State<WelcomeSplash> {
     isLoad = true;
 
     Timer(
-        Duration(seconds: 3),
+        Duration(seconds: 4),
         () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
