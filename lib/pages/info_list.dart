@@ -2,6 +2,7 @@ import 'package:ezrisk/models/contry.dart';
 import 'package:ezrisk/pages/detailFiles.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:ezrisk/models/app_config.dart';
 
 class InfoList extends StatefulWidget {
   final Item country;
@@ -13,16 +14,18 @@ class InfoList extends StatefulWidget {
 }
 
 class _InfoListState extends State<InfoList> {
-  // late List _user = [];
-  List Dummy = ["Laws", "Standards", "Regulatories", "National Regulatories"];
+  late List _user = [];
+  // List Dummy = ["Laws", "Standards", "Regulatories", "National Regulatories"];
 
   void loadData() async {
-    // String id = widget.country.c_id.toString();
+    String id = widget.country.c_id.toString() ;
+    var data = JsonServer(countryId: id);
+    
+    var _userData = await data.countryData() ;
+    
+    _user = _userData ;
+    
 
-    // var url = Uri.parse(JsonServer.url + id);
-    // var response = await http.get(url);
-    // var JsonDecode = jsonDecode(response.body);
-    // _user = JsonDecode;
     setState(() {});
   }
 
@@ -70,11 +73,12 @@ class _InfoListState extends State<InfoList> {
       child: SingleChildScrollView(
         child: ListView.builder(
           // itemCount: _user.length,
-          itemCount: Dummy.length,
+          itemCount: _user.length,
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            final DummyTitle = Dummy[index];
+            final sec_id = _user[index]['sec_id'];
+            
             // final userSec = _user[index]['sec_id'];
             // print(userSec);
             return Card(
@@ -82,7 +86,7 @@ class _InfoListState extends State<InfoList> {
                 // shadowColor: Colors.blueAccent,
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  title: "${Dummy[index]}".text.bold.xl2.make(),
+                  title: "${_user[index]['cat_name']}".text.bold.xl2.make(),
                   // subtitle: "${_user[index]['sec_id']}".text.make(),
                   // title: "Laws".text.bold.xl2.make(),
                   // subtitle: "${_user[index]['sec_id']}".text.make(),
@@ -94,7 +98,7 @@ class _InfoListState extends State<InfoList> {
                           MaterialPageRoute(
                               builder: (context) =>
                                   // DetailsFile(userSec: userSec)));
-                                  DetailsFile(DummyTitle: DummyTitle)));
+                                  DetailsFile(sec_id: sec_id ,)));
                       // Get.to(() => DetailsFile(userSec: userSec));
                     },
                   ),
