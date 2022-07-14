@@ -32,7 +32,11 @@ class _PDFPageState extends State<PDFPage> {
           tooltip: 'Download File',
           child: const Icon(Icons.download),
         ),
-        body: SfPdfViewer.network(
-            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'));
+        body: Column(
+          children: [
+            SfPdfViewer.network(
+                'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'),
+          ],
+        ));
   }
 }
