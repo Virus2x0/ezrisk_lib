@@ -4,9 +4,13 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PDFPage extends StatefulWidget {
-  PDFPage({Key? key}) : super(key: key);
+  String PDFtitle;
+  String PDFlink;
+
+  PDFPage({required this.PDFtitle, required this.PDFlink});
 
   @override
+
   State<PDFPage> createState() => _PDFPageState();
 }
 
@@ -15,7 +19,7 @@ class _PDFPageState extends State<PDFPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: "PDF Demo".text.make(),
+          title: "${widget.PDFtitle}".text.make(),
           centerTitle: true,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -33,6 +37,6 @@ class _PDFPageState extends State<PDFPage> {
           child: const Icon(Icons.download),
         ),
         body: SfPdfViewer.network(
-            'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'));
+            "${widget.PDFlink}"));
   }
 }
