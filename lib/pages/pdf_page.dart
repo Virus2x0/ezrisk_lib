@@ -10,7 +10,6 @@ class PDFPage extends StatefulWidget {
   PDFPage({required this.PDFtitle, required this.PDFlink});
 
   @override
-
   State<PDFPage> createState() => _PDFPageState();
 }
 
@@ -36,16 +35,6 @@ class _PDFPageState extends State<PDFPage> {
           tooltip: 'Download File',
           child: const Icon(Icons.download),
         ),
-<<<<<<< HEAD
-        body: Column(
-          children: [
-            SfPdfViewer.network(
-                'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'),
-          ],
-        ));
-=======
-        body: SfPdfViewer.network(
-            "${widget.PDFlink}"));
->>>>>>> d29de105f52af8242dcf680ed2a5f4916214e230
+        body: SfPdfViewer.network("${widget.PDFlink}"));
   }
 }

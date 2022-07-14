@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
           '/home': (context) => HomePage(),
           '/faq': (context) => FAQ(),
           '/fgtpass': (context) => ForgotPasswordPage(),
-          '/pdf': (context) => PDFPage(),
           '/inBord': (context) => InBoardingScreen(),
         });
   }
