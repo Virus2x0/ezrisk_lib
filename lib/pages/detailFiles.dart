@@ -1,4 +1,4 @@
- import 'package:ezrisk/models/app_config.dart';
+import 'package:ezrisk/models/app_config.dart';
 import 'package:ezrisk/pages/pdf_page.dart';
 import 'package:ezrisk/pages/widget/page_title.dart';
 
@@ -13,7 +13,7 @@ class DetailsFile extends StatefulWidget {
   final sec_id;
 
   
-  List laws = ["not having data", "not having data", "not having data", "not having data"];
+  List laws = [{ "name" : "not having a pdf","link":"not having a link"}];
 
   DetailsFile({Key? key, required this.sec_id}) : super(key: key);
 
@@ -33,9 +33,9 @@ class _DetailsFileState extends State<DetailsFile> {
    var typeData = await data.infoData() ;
    
    
-   type = typeData['type'];
+   type = typeData['type'] == null ? "no title available" : typeData['type'];
     
-   _users = typeData['results']   ;
+   _users = typeData['results'] == null ? widget.laws : typeData['results']  ;
    
     setState(() {});
   }
@@ -105,13 +105,13 @@ class _DetailsFileState extends State<DetailsFile> {
 
                   trailing: ElevatedButton(
                     child: "  Open PDF ".text.make(),
-                    onPressed: () {
+                    onPressed: PDFlink != "not having a link" ? ()  {
+                      
                        Navigator.push(
                        context,
                        MaterialPageRoute(builder: (context) => PDFPage(PDFtitle: PDFtitle,PDFlink: PDFlink ,)),
                          ); 
-                     
-                    },
+                      }:(){},
                   ),
                 ));
           },
