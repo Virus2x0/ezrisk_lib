@@ -12,8 +12,9 @@ class DetailsFile extends StatefulWidget {
   // final userSec;
   final sec_id;
 
-  
-  List laws = [{ "name" : "not having a pdf","link":"not having a link"}];
+  List laws = [
+    {"name": "No Data Found", "link": "No Data Found"}
+  ];
 
   DetailsFile({Key? key, required this.sec_id}) : super(key: key);
 
@@ -22,21 +23,20 @@ class DetailsFile extends StatefulWidget {
 }
 
 class _DetailsFileState extends State<DetailsFile> {
-   var type ;
+  var type;
   late List _users = [];
 
   void loadData() async {
     // String sec_id = widget.userSec;
     // String country = "country/";
-    String sec_id = widget.sec_id ;
+    String sec_id = widget.sec_id;
     var data = JsonServer(countryId: sec_id);
-   var typeData = await data.infoData() ;
-   
-   
-   type = typeData['type'] == null ? "no title available" : typeData['type'];
-    
-   _users = typeData['results'] == null ? widget.laws : typeData['results']  ;
-   
+    var typeData = await data.infoData();
+
+    type = typeData['type'] == null ? "No Data Found" : typeData['type'];
+
+    _users = typeData['results'] == null ? widget.laws : typeData['results'];
+
     setState(() {});
   }
 
@@ -74,7 +74,8 @@ class _DetailsFileState extends State<DetailsFile> {
           padding: EdgeInsets.all(12),
           child: Column(
             children: [
-              DTitle(title: "${type!=null ? type : "loading...."}"),
+              // DTitle(title: "${type != null ? type : "loading...."}"),
+              DTitle(title: "${type != null ? type : "Loading Data"}"),
               // Image.network(widget.country.c_icon),
               DetailsList()
             ],
@@ -92,26 +93,27 @@ class _DetailsFileState extends State<DetailsFile> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             String PDFtitle = _users[index]['name'];
-            String PDFlink = _users[index]['link'] ;
+            String PDFlink = _users[index]['link'];
             return Card(
                 elevation: 8,
                 shadowColor: Colors.blueAccent,
                 child: ListTile(
                   leading: Icon(Icons.clear_all_sharp),
-                  //!! yahha likhnaa
-                  // title: "${_users[index]['rules']}".text.bold.xl2.make(),
-                  // subtitle: "${_users[index]['regulation']}".text.make(),
                   title: "${PDFtitle}".text.bold.xl2.make(),
-
                   trailing: ElevatedButton(
                     child: "  Open PDF ".text.make(),
-                    onPressed: PDFlink != "not having a link" ? ()  {
-                      
-                       Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context) => PDFPage(PDFtitle: PDFtitle,PDFlink: PDFlink ,)),
-                         ); 
-                      }:(){},
+                    onPressed: PDFlink != "not having a link"
+                        ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PDFPage(
+                                        PDFtitle: PDFtitle,
+                                        PDFlink: PDFlink,
+                                      )),
+                            );
+                          }
+                        : () {},
                   ),
                 ));
           },
@@ -120,4 +122,7 @@ class _DetailsFileState extends State<DetailsFile> {
     );
   }
 
+  Widget ProgressBar() {
+    return CircularProgressIndicator().centered().expand();
+  }
 }

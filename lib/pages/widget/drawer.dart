@@ -6,6 +6,7 @@ import "package:velocity_x/velocity_x.dart";
 import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 
+import '../data_not_found.dart';
 import '../faq_page.dart';
 import '../home_page.dart';
 
@@ -158,7 +159,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                         leading: Icon(Icons.logout),
                         title: "Log Out".text.xl.make(),
                         onTap: () {
-                          Get.to(() => LogInPage());
+                          Get.to(() => DataNotFound());
                         }),
                   ],
                 ),
