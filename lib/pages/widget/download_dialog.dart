@@ -6,7 +6,8 @@ import 'dart:io';
 import 'package:external_path/external_path.dart';
 
 class DownloadingDialog extends StatefulWidget {
-  const DownloadingDialog({Key? key}) : super(key: key);
+  String url
+  const DownloadingDialog({Key? key,required this.url}) : super(key: key);
 
   @override
   _DownloadingDialogState createState() => _DownloadingDialogState();
@@ -19,17 +20,17 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
   var downloadingprogress;
 
   void startDownloading() async {
-    const String url =
-        'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+    
 
-    String fileName = url.substring(url.lastIndexOf("/") + 1);
+
+    String fileName = widget.url.substring(url.lastIndexOf("/") + 1);
     print(fileName);
 
     String path = await _getFilePath(fileName);
 
     try {
       Response response = await dio.download(
-        url,
+        widget.url,
         path,
         onReceiveProgress: (recivedBytes, totalBytes) {
           setState(() {
