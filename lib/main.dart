@@ -1,8 +1,20 @@
-import 'package:ezrisk/pages/homePage.dart';
+import 'package:ezrisk/pages/faq_page.dart';
+import 'package:ezrisk/pages/forgot_password_page.dart';
+import 'package:ezrisk/pages/in_boarding_screen.dart';
+import 'package:ezrisk/pages/pdf_page.dart';
+import 'package:ezrisk/pages/welcome_spalsh.dart';
+import 'package:ezrisk/pages/home_page.dart';
+import 'package:ezrisk/pages/logIn_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+var isSeen;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  isSeen = await (prefs.getBool('isSeen') ?? false);
+
   runApp(MyApp());
 }
 
@@ -13,15 +25,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         title: "Ezrisk",
+        color: Colors.white,
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          primaryColor: Colors.indigo[600],
+          primaryColor: Colors.blue,
         ),
-        initialRoute: '/home',
+        initialRoute: '/',
         routes: {
-          // '/login': (context) => LoginPage(),
+          '/': (context) => WelcomeSplash(
+                isSeen: isSeen,
+              ),
+          '/login': (context) => LogInPage(),
           '/home': (context) => HomePage(),
-          // '/country': (context) => ChooseCountry()
+          '/faq': (context) => FAQ(),
+          '/fgtpass': (context) => ForgotPasswordPage(),
+          '/inBord': (context) => InBoardingScreen(),
         });
   }
 }
