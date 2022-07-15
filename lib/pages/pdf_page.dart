@@ -29,7 +29,7 @@ class _PDFPageState extends State<PDFPage> {
           onPressed: () {
             showDialog(
               context: context,
-              builder: (context) => const DownloadingDialog(),
+              builder: (context) => const DownloadingDialog(url:widget.PDFlink),
             );
           },
           tooltip: 'Download File',
