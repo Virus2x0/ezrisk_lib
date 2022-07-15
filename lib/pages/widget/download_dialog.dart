@@ -23,7 +23,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
     
 
 
-    String fileName = widget.url.substring(url.lastIndexOf("/") + 1);
+    String fileName = widget.url.substring(widget.url.lastIndexOf("/") + 1);
     print(fileName);
 
     String path = await _getFilePath(fileName);
