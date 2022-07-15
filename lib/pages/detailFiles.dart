@@ -102,7 +102,7 @@ class _DetailsFileState extends State<DetailsFile> {
                   title: "${PDFtitle}".text.bold.xl2.make(),
                   trailing: ElevatedButton(
                     child: "  Open PDF ".text.make(),
-                    onPressed: PDFlink != "not having a link"
+                    onPressed: PDFlink != "No Data Found"
                         ? () {
                             Navigator.push(
                               context,
